@@ -29,7 +29,7 @@ The purpose here is to showcase how you can deploy an entire Kubernetes cluster 
   - [7.2. :robot:&nbsp; Integrations](#72-robot-integrations)
 - [8. :grey_question:&nbsp; What's next](#8-grey_question-whats-next)
 - [9. :handshake:&nbsp; Thanks](#9-handshake-thanks)
-- [:arrows_counterclockwise: Keeping this repo upto date with the template repo](#arrows_counterclockwise-keeping-this-repo-upto-date-with-the-template-repo)
+- [10. :arrows_counterclockwise: Keeping this repo upto date with the template repo](#10-arrows_counterclockwise-keeping-this-repo-upto-date-with-the-template-repo)
 
 # 2. Overview
 
@@ -47,7 +47,7 @@ The following components will be installed in your [k3s](https://k3s.io/) cluste
 Feel free to read up on any of these technologies before you get started to be more familiar with them.
 
 - [cert-manager](https://cert-manager.io/) - SSL certificates - with Cloudflare DNS challenge
-- [flannel](https://github.com/flannel-io/flannel) - default CNI provided by k3s
+- [calico](https://www.tigera.io/project-calico/) - CNI (container network interface)
 - [flux](https://toolkit.fluxcd.io/) - GitOps tool for deploying manifests from the `cluster` directory
 - [hajimari](https://github.com/toboshii/hajimari) - start page with ingress discovery
 - [kube-vip](https://kube-vip.io/) - layer 2 load balancer for the Kubernetes control plane
@@ -359,7 +359,7 @@ If you plan on exposing your ingress to the world from your home. Checkout [our 
 
 Big shout out to all the authors and contributors to the projects that we are using in this repository.
 
-# :arrows_counterclockwise: Keeping this repo upto date with the template repo
+# 10. :arrows_counterclockwise: Keeping this repo upto date with the template repo
 
 At some point you may want to update your Git repository with some commit from this repository. The following is one method to achieve this.
 
@@ -381,14 +381,27 @@ git fetch tmpl
 git log tmpl/main
 ```
 
-4. Pick the commit you want to bring over to your repository
+4. There are two methods to bring changes from template in here: 
+   
+   4.1. Pick the commit you want to bring over to your repository
 
-```sh
-git cherry-pick ce67a3c
-```
+    ```sh
+    git cherry-pick ce67a3c
+    ```
+
+   4.2. Use difftool to compare latest with the current repo and add changes manually
+
+   ```bash
+   git difftool tmpl/main
+   ```
+
+   If a new file that was not present in my local main was added to the template, Meld (difftool) wouldn't be able to save that file. If this is the case, you'll get an error when trying to save. for these files find the file location with `git diff tmpl/main` and do `git checkout tmpl/main path/to/new/file` to get the new file. 
+
 
 5. Push the changes up to your Git remote
 
 ```sh
 git push origin main
 ```
+
+
