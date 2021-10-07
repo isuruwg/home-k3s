@@ -8,27 +8,28 @@ The purpose here is to showcase how you can deploy an entire Kubernetes cluster 
 
 - [1. Template for deploying k3s backed by Flux](#1-template-for-deploying-k3s-backed-by-flux)
 - [2. Overview](#2-overview)
-- [3. Introduction](#3-introduction)
-- [4. Prerequisites](#4-prerequisites)
-  - [4.1. Systems](#41-systems)
-  - [4.2. Tools](#42-tools)
+- [3. :wave:&nbsp; Introduction](#3-wave-introduction)
+- [4. :memo:&nbsp; Prerequisites](#4-memo-prerequisites)
+  - [4.1. :computer:&nbsp; Systems](#41-computer-systems)
+  - [4.2. :wrench:&nbsp;Tools](#42-wrenchtools)
     - [4.2.1. Required](#421-required)
     - [4.2.2. Optional](#422-optional)
-  - [4.3. pre-commit](#43-pre-commit)
-- [5. Repository structure](#5-repository-structure)
-- [6. Lets go!](#6-lets-go)
-  - [6.1. Setting up GnuPG keys](#61-setting-up-gnupg-keys)
-  - [6.2. Global Cloudflare API Key](#62-global-cloudflare-api-key)
-  - [6.3. Configuration](#63-configuration)
-  - [6.4. Preparing Ubuntu with Ansible](#64-preparing-ubuntu-with-ansible)
-  - [6.5. Installing k3s with Ansible](#65-installing-k3s-with-ansible)
-  - [6.6. GitOps with Flux](#66-gitops-with-flux)
-  - [6.7. Configure Cloudflare DNS with Terraform](#67-configure-cloudflare-dns-with-terraform)
-- [7. Post installation](#7-post-installation)
-  - [7.1. Troubleshooting](#71-troubleshooting)
-  - [7.2. Integrations](#72-integrations)
-- [8. What's next](#8-whats-next)
-- [9. Thanks](#9-thanks)
+  - [4.3. :warning:&nbsp; pre-commit](#43-warning-pre-commit)
+- [5. :open_file_folder:&nbsp; Repository structure](#5-open_file_folder-repository-structure)
+- [6. :rocket:&nbsp; Lets go!](#6-rocket-lets-go)
+  - [6.1. :closed_lock_with_key:&nbsp; Setting up GnuPG keys](#61-closed_lock_with_key-setting-up-gnupg-keys)
+  - [6.2. :cloud:&nbsp; Global Cloudflare API Key](#62-cloud-global-cloudflare-api-key)
+  - [6.3. :page_facing_up:&nbsp; Configuration](#63-page_facing_up-configuration)
+  - [6.4. :zap:&nbsp; Preparing Ubuntu with Ansible](#64-zap-preparing-ubuntu-with-ansible)
+  - [6.5. :sailboat:&nbsp; Installing k3s with Ansible](#65-sailboat-installing-k3s-with-ansible)
+  - [6.6. :small_blue_diamond:&nbsp; GitOps with Flux](#66-small_blue_diamond-gitops-with-flux)
+  - [6.7. :cloud:&nbsp; Configure Cloudflare DNS with Terraform](#67-cloud-configure-cloudflare-dns-with-terraform)
+- [7. :mega:&nbsp; Post installation](#7-mega-post-installation)
+  - [7.1. :point_right:&nbsp; Troubleshooting](#71-point_right-troubleshooting)
+  - [7.2. :robot:&nbsp; Integrations](#72-robot-integrations)
+- [8. :grey_question:&nbsp; What's next](#8-grey_question-whats-next)
+- [9. :handshake:&nbsp; Thanks](#9-handshake-thanks)
+- [:arrows_counterclockwise: Keeping this repo upto date with the template repo](#arrows_counterclockwise-keeping-this-repo-upto-date-with-the-template-repo)
 
 # 2. Overview
 
@@ -357,3 +358,37 @@ If you plan on exposing your ingress to the world from your home. Checkout [our 
 # 9. :handshake:&nbsp; Thanks
 
 Big shout out to all the authors and contributors to the projects that we are using in this repository.
+
+# :arrows_counterclockwise: Keeping this repo upto date with the template repo
+
+At some point you may want to update your Git repository with some commit from this repository. The following is one method to achieve this.
+
+1. Add this repository as an additional remote
+
+```sh
+git remote add tmpl git@github.com:k8s-at-home/template-cluster-k3s.git
+```
+
+2. Fetch all the branches
+
+```sh
+git fetch tmpl
+```
+
+3. List the commits from this repository
+
+```sh
+git log tmpl/main
+```
+
+4. Pick the commit you want to bring over to your repository
+
+```sh
+git cherry-pick ce67a3c
+```
+
+5. Push the changes up to your Git remote
+
+```sh
+git push origin main
+```
