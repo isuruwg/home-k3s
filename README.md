@@ -113,7 +113,19 @@ It is advisable to install [pre-commit](https://pre-commit.com/) and the pre-com
 After pre-commit is installed on your machine run:
 
 ```sh
-pre-commit install-hooks
+task pre-commit:init
+```
+**Remember to run this on each new clone of the repository for it to have effect.**
+
+Commands are of interest, for learning purposes:
+
+This command makes it so pre-commit runs on `git commit`, and also installs environments per the config file.
+```
+pre-commit install --install-hooks
+```
+This command checks for new versions of hooks, though it will occasionally make mistakes, so verify its results.
+```
+pre-commit autoupdate
 ```
 
 # 4. :open_file_folder:&nbsp; Repository structure
@@ -188,7 +200,7 @@ In order to use Terraform and `cert-manager` with the Cloudflare DNS challenge y
 
 ## 5.3. :page_facing_up:&nbsp; Configuration
 
-:round_pushpin: The `.config.env` file contains necessary configuration files that are needed by Ansible, Terraform and Flux.
+:round_pushpin: The `.config.env` file contains necessary configuration that is needed by Ansible, Terraform and Flux.
 
 1. Copy the `.config.sample.env` to `.config.env` and start filling out all the environment variables. **All are required** and read the comments they will explain further what is required.
 
@@ -227,7 +239,7 @@ In order to use Terraform and `cert-manager` with the Cloudflare DNS challenge y
 4. If everything goes as planned you should see Ansible running the k3s install Playbook against your nodes.
 
 5. Verify the nodes are online
-   
+
 ```sh
 kubectl --kubeconfig=./provision/kubeconfig get nodes
 # NAME           STATUS   ROLES                       AGE     VERSION
@@ -264,7 +276,7 @@ cat ~/.config/sops/age/keys.txt |
     --from-file=age.agekey=/dev/stdin
 ```
 
-:round_pushpin: Variables defined in `./cluster/base/cluster-secrets.sops.yaml` and `./cluster/base/cluster-settings.sops.yaml` will be usable anywhere in your YAML manifests under `./cluster`
+:round_pushpin: Variables defined in `./cluster/base/cluster-secrets.sops.yaml` and `./cluster/base/cluster-settings.yaml` will be usable anywhere in your YAML manifests under `./cluster`
 
 4. **Verify** all the above files are **encrypted** with SOPS
 
@@ -324,7 +336,7 @@ If Terraform was ran successfully head over to your browser and you _should_ be 
 
 ## 6.1. :point_right:&nbsp; Troubleshooting
 
-Our [wiki](https://github.com/k8s-at-home/template-cluster-k3s/wiki) is a good place to start troubleshooting issues. If that doesn't cover your issue, start a new thread in the #support channel on our [Discord](https://digcord.gg/k8s-at-home).
+Our [wiki](https://github.com/k8s-at-home/template-cluster-k3s/wiki) is a good place to start troubleshooting issues. If that doesn't cover your issue, start a new thread in the #support channel on our [Discord](https://discord.gg/k8s-at-home).
 
 ## 6.2. :robot:&nbsp; Integrations
 
