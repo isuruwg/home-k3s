@@ -73,7 +73,7 @@ For provisioning the following tools will be used:
 
 ## 3.1. :computer:&nbsp; Systems
 
-- One or mote nodes with a fresh install of [Ubuntu Server 20.04](https://ubuntu.com/download/server). These nodes can be bare metal or VMs.
+- One or more nodes with a fresh install of [Ubuntu Server 20.04](https://ubuntu.com/download/server). These nodes can be bare metal or VMs.
 - A [Cloudflare](https://www.cloudflare.com/) account with a domain, this will be managed by Terraform.
 - Some experience in debugging problems and a positive attitude ;)
 
@@ -103,12 +103,13 @@ For provisioning the following tools will be used:
 | [helm](https://helm.sh/)                               | Manage Kubernetes applications                           |
 | [kustomize](https://kustomize.io/)                     | Template-free way to customize application configuration |
 | [pre-commit](https://github.com/pre-commit/pre-commit) | Runs checks pre `git commit`                             |
+| [gitleaks](https://github.com/zricethezav/gitleaks)    | Scan git repos (or files) for secrets                    |
 | [prettier](https://github.com/prettier/prettier)       | Prettier is an opinionated code formatter.               |
 
 ## 3.3. :warning:&nbsp; pre-commit
 
 It is advisable to install [pre-commit](https://pre-commit.com/) and the pre-commit hooks that come with this repository.
-[sops-pre-commit](https://github.com/k8s-at-home/sops-pre-commit) will check to make sure you are not by accident committing your secrets un-encrypted.
+[sops-pre-commit](https://github.com/k8s-at-home/sops-pre-commit) and [gitleaks](https://github.com/zricethezav/gitleaks) will check to make sure you are not by accident committing your secrets un-encrypted.
 
 After pre-commit is installed on your machine run:
 
@@ -278,7 +279,7 @@ cat ~/.config/sops/age/keys.txt |
 
 :round_pushpin: Variables defined in `./cluster/base/cluster-secrets.sops.yaml` and `./cluster/base/cluster-settings.yaml` will be usable anywhere in your YAML manifests under `./cluster`
 
-4. **Verify** all the above files are **encrypted** with SOPS
+4. **Verify** the `./cluster/base/cluster-secrets.sops.yaml` and `./cluster/core/cert-manager/secret.sops.yaml` files are **encrypted** with SOPS
 
 5. If you verified all the secrets are encrypted, you can delete the `tmpl` directory now
 
